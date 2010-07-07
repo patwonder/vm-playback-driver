@@ -1,3 +1,4 @@
+#labels Daily_Report
 Major works done:<br />
  * Environment setup, installed Ubuntu(host) and Windows XP(client);<br />
  * Tried to play some video in Windows XP, vlc media player performs best with no frame drop and little more cpu cost than host while playing 1080p movies;<br />
