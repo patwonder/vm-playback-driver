@@ -3,15 +3,15 @@
 
 =Brief=
 
-*Read articles about DirectShow
+*Read articles about Directshow.
 
 =Details=
 
-*Understand the process of building a filter graph
+*Understand the process of building a filter graph.
 
-*Understand how Directshow works from the abstract perspective
+*Understand how Directshow works from the abstract perspective.
 =Missions of tomorrow=
 
-*Contact Mr.ren to solve the problem about hardware
+*Contact Mr.ren to solve the problem about hardware.
 
-*Read articles about DirectX Video Acceleration
+*Read articles about DirectX Video Acceleration.
