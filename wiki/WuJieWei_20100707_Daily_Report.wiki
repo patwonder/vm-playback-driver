@@ -14,3 +14,8 @@ Read material of Xen
     Found our computers and computers in other room do not support VA-API
   * Known some technologies of Hardware Accceleration.
   * Known some para-vituralization tech in Xen
+
+= Plan =
+
+ * Continue to study DirectShow and MF
+ * Continue to find other material about hardware vituralization
