@@ -1,0 +1,16 @@
+#summary One-sentence summary of this page.
+#labels Daily_Report
+
+= Brief=
+
+Study VA API</br>
+Study Hardware Acceleration.
+Start to study DirectShow and MF
+Read material of Xen
+
+= Details =
+
+  * Known about which kind of hardware VA-API supported</Br>
+    Found our computers and computers in other room do not support VA-API
+  * Known some technologies of Hardware Accceleration.
+  * Known some para-vituralization tech in Xen
