@@ -1,0 +1,20 @@
+#summary Weekly Report
+#labels Report
+
+= Summary =
+
+ * Set up working environment<p/>
+ Status:Finished
+ * <i>Test performance of video playback:</i><p/> 
+  # Host+software codec<p/>
+  # VMM+software codec<p/>
+ <strong>Brief Result:</strong>VMM-playback cost 40% more CPU usage than host-playback.
+ * Study QEMU, DirectShow and some frameworks.<br>
+ Status: processing
+
+<hr>
+= Next Week Plan =
+
+ * Architecture design of vm-playback
+ * Continue to study QEMU, Directshow, MF.
+ * Try to make some code on driver
