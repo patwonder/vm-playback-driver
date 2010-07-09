@@ -1,0 +1,10 @@
+#labels Daily_Report
+#Daily Report
+
+=Summary=
+*Read articles about hardware video acceration.
+*Discuss the realization of i/o device in Xen, parts of which might be mimiced by our implementation.
+
+=Missions of tomorrow=
+
+*countinue reading articles about DirectX Video Acceleration.
