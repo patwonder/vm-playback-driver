@@ -1,0 +1,9 @@
+#labels Daily_Report
+#Daily Report
+
+=Summary=
+*Read articles about virtio
+
+
+=Missions of tomorrow=
+*Countinue reading
