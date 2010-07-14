@@ -1,0 +1,9 @@
+#labels Daily_Report
+#Daily Report
+
+=Summary=
+*Read articles about i/o device implementation of kvm/qemu.
+*Mail to Intel mentors to clarify some confusions.
+
+=Missions of tomorrow=
+*Continue fight against the problem about communication.
