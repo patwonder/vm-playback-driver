@@ -1,0 +1,12 @@
+#labels Daily_Report
+= Brief =
+
+Continue to study MF.<br>
+Study how to simulate a virtual device on QEMU.
+Study ffdshow-tryout framework.
+
+= Details =
+
+ * Almost understand MF
+ * Little progress, still don't know how to simulate a virtual device.
+ * ffdshow-tryout is a good reference!
