@@ -1,0 +1,7 @@
+#labels Daily_Report
+
+=Summary=
+*Read source code of qemu related to device.
+
+=Missions of tomorrow=
+*continue reading.
