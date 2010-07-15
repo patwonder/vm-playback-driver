@@ -5,4 +5,4 @@
 =Missions of tomorrow=
 *Continue reading.
 
-*Start to try writing a device.
+*Start to try writing a simple device.
