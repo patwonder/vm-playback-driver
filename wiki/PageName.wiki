@@ -1,0 +1,10 @@
+#labels Daily_Report
+=Summary=
+*Get my mission to work on the backend.
+*Started to read codes of ffmpeg.
+*Understood the architecture of ffmpeg.
+
+=Missions of next monday=
+*Continue to understand the process of decoding in ffmpeg.(following parts need extra attention)
+    #How the player transfer data to decoder, and what's the unit of one transformation.
+    #How to transfer back.
