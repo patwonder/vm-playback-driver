@@ -5,7 +5,7 @@
 
  * Study DirectShow<p/>
  Status:Known Architecture and implementation
- * Study libva<p/> 
+ * Study ffmpeg and libva<p/> 
  Status: processing
  * Study communication mechanism between HOST and GUEST<br>
  Status: meet some problems, and try to use socket instead.
