@@ -1,0 +1,11 @@
+#labels Daily_Report
+= Brief =
+
+Discuss our project with Kevin and Lianhao.<br>
+Study DirectShow.
+
+
+= Details =
+
+  * Study usage of GraphEdit.
+  * Read some paper
