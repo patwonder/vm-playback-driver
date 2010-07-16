@@ -1,0 +1,21 @@
+#summary Weekly Report
+#labels Report
+
+= Summary =
+
+ * Study DirectShow<p/>
+ Status:Known Architecture and implementation
+ * Study libva<p/> 
+ Status: processing
+ * Study communication mechanism between HOST and GUEST<br>
+ Status: meet some problems, and try to use socket instead.
+
+<hr>
+= Next Week Plan =
+
+ * Divide our work to three parts.
+  # Coding a filter on DirectShow. <i>by WuJieWei</i>
+  # Write a socket communication program <i>by WuYiFan</i>
+  # Coding on ffmpeg with libva, get familiar with API <i>by SunZeLong</i>
+ * Decide using which decoder
+ * Design communication protocol.
