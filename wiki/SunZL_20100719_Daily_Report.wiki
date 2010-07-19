@@ -1,0 +1,6 @@
+#labels Daily_Report
+=Summary=
+*Known how to decode by reading code of ffplay.c.
+
+=Missions of tomorrow=
+*Read codes related to vaapi.
