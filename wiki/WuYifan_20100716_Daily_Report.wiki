@@ -1,3 +1,4 @@
+#labels Daily_Report
 Major works done:
  * Discussed project difficulties;
  * Divided our work;
