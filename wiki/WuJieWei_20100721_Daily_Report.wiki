@@ -1,0 +1,11 @@
+#labels Daily_Report
+= Brief =
+
+Build ffdshow.<br>
+Modify decode part, using our own lib.
+
+
+= Details =
+
+ * Build ffdshow successfully.
+ * When adding our own code, I met link error. Unsolved.
