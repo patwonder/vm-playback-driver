@@ -5,7 +5,7 @@
 *Tried to transfer data to another process which serve for decoding. 
 
 =Important issues=
-*Need to understand what the exact work are done in methods provided by ffmpeg api. 
+*Need to understand what works are done in methods provided by ffmpeg api. 
 
 *Need to precisely understand how a player using ffmpeg works. The way is to analyze ffplay.
 
