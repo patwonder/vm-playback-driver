@@ -1,0 +1,13 @@
+#labels Daily_Report
+= Brief =
+
+Modify ffdshow with our code and lib<br>
+Consider Communication Protocol.
+
+
+= Details =
+
+ * Solve yesterday's problem.<br>
+    change our lib from /MD to /MT in VS, then ffdshow can link with our lib.
+ * Put our version ffdshow into VMM. Using Graphedit to test, it works.
+ * I found both MPEG-4 and H.264 using avcodec to decode. Yet they do have some difference.
