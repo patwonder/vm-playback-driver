@@ -1,0 +1,6 @@
+#labels Daily_Report
+=Summary=
+*Successfully decoded data transfering from api-example.c in the decoding process . 
+
+=Missions of tomorrow=
+*Try to do the same thing between ffplay and decoding process.
