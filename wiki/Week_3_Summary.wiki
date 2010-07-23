@@ -1,0 +1,23 @@
+#summary Weekly Report
+#labels Report
+
+= Summary =
+
+ * Coding with ffdshow<p/>
+ Status: 
+         # Finish building with our lib.
+         # The building one can decode video and send data to backend in Host.
+ * Coding with ffmpeg<p/> 
+ Status:  
+         # Write a proxy, can receive data from socket and decode it.
+         # Write back Decoded data, processing
+ * Establish socket communication lib<br>
+ Status: Using tcp and virtio, bandwith 40mb/s,not so effective but can be accepted.
+ * Design communication protocol<br>
+ Status: We made a draft, leave some struct TBD.
+
+<hr>
+= Next Week Plan =
+
+ * Complete Protocol
+ * Link Frontend with Backend by Protocol,for backend can decode video from frontend and front end can playback video frame from backend.
