@@ -1,0 +1,8 @@
+#labels Daily_Report
+=Summary=
+*Constructed a simple communication mechanism locally.
+
+*Discuss the protocol.
+
+=Missions of next Monday=
+*Complete the local test.
