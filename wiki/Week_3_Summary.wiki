@@ -13,7 +13,7 @@
          # Write back Decoded data, processing
  * Establish socket communication lib<br>
  Status: Using tcp and virtio, bandwith 40mb/s,not so effective but can be accepted.
- * Design communication protocol<br>
+ * Design communication protocol <a href="http://code.google.com/p/vm-playback-driver/downloads/detail?name=VMACC_Protocol_Draft.doc&can=2&q=">view</a> <br>
  Status: We made a draft, leave some struct TBD.
 
 <hr>
