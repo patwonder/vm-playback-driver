@@ -1,0 +1,11 @@
+TAP configuration steps(incomplete version):
+1. Modify intefaces.sample file. Copy it to /etc/network folder and replace the original 'interfaces' file
+2. Add the following option to qemu startup command: -net nic,model=virtio -net tap,ifname=tap0
+3. Modify /etc/qemu-ifup and /etc/qemu-ifdown, according to the samples given
+4. Execute: mknod /dev/net/tun c 10 200
+5. Execute '/etc/init.d/networking restart' to restart host's network. Make sure you are still connected to the Internet
+6. Launch qemu. On guest(Windows), add a line into C:\Windows\System32\drivers\etc\hosts:
+xxx.xxx.xxx.xxx vmhost
+where 'xxx.xxx.xxx.xxx' stands for your host machines' address
+7. Configure guest's ip settings similar to host's
+8. try ping vmhost
