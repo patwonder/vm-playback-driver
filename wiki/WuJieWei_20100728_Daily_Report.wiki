@@ -1,0 +1,13 @@
+#labels Daily_Report
+= Brief =
+
+Solve decoding problem.<br>
+Modify Protocol.<br>
+Discuss Video Playback
+
+
+= Details =
+
+  * When I remove decode in frontend, I met timestamp problem. I have to debug and fix the timestamp bug.
+  * Change some details in protocol. Some are deprecated, and some are added.
+  * Discuss how to bind video window with VMM and frontend
