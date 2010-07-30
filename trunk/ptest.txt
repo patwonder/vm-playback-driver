@@ -1,0 +1,6 @@
+Rough performance test
+25% host decode only
+45% host decode and display
+25% client decode only
+60% client decode and display
+The problem lies in the rendering process, which consumes a lot of CPU time.
