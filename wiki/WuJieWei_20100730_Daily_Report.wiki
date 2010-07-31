@@ -1,0 +1,12 @@
+#labels Daily_Report
+= Brief =
+
+Have a meeting in INTEL. <br>
+Testing playback performance.<br>
+Try to fix some bugs
+
+= Details =
+
+ * In meeting, we discuss how to draw frame on screen.
+ * We find our main cost is rendering.
+ * Bugs unsolved.
