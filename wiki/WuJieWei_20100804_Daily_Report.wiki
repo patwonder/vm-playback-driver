@@ -1,0 +1,11 @@
+#labels Daily_Report
+= Brief =
+
+Add topmost of renderer.<br>
+Write Test Plan.
+
+
+= Details =
+
+  * To avoid region update problem, we use topmost
+  * Next two days we will make a completely test.
