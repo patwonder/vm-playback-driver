@@ -1,0 +1,6 @@
+#labels Daily_Report
+=Summary=
+*Tested the performance.
+
+=Missions of tomorrow=
+*Continue testing.
