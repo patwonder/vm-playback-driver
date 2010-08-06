@@ -28,6 +28,7 @@ public:
 	unsigned int getSize() const;
 	unsigned int getSeekPos() const;
 	void seek(unsigned int pos);
+	unsigned int tell();
 	char readSByte();
 	unsigned char readByte();
 	short readInt16();

@@ -60,7 +60,7 @@ void Connection::setSocketOptions(SOCKET socket) {
 	setsockopt(socket, IPPROTO_TCP, TCP_NODELAY, (char*)&nodelay, sizeof(nodelay));
 }
 
-Connection* Connection::newConnection() {
+Connection* Connection::newConnection(int prt) {
 	if (!initialized)
 		initialize();
 
@@ -70,7 +70,7 @@ Connection* Connection::newConnection() {
 	hints.ai_family = AF_INET;
 	hints.ai_socktype = SOCK_STREAM;
 	char port[10];
-	sprintf(port, "%d", PORT);
+	sprintf(port, "%d", prt);
 
 	if (0 != getaddrinfo(HOST_ADDR, port, &hints, &res)) {
 		throw ConnectionException("Incorrect network address.");

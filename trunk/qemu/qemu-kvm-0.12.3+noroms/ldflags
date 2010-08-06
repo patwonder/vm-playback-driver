@@ -1,0 +1,1 @@
+-Wl,--warn-common -m32 -g -L../../vabknd -lvabknd -L../../../../ffmpeg-checkout-2010-07-16/libavcodec/ -lavcodec -L../../../../ffmpeg-checkout-2010-07-16/libavutil -lavutil -lz -lm -lpthread -L../../../../ffmpeg-checkout-2010-07-16/libswscale/ -lswscale -I/usr/include/SDL -L/usr/lib -lSDL

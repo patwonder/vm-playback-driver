@@ -1,0 +1,13 @@
+usr/bin/qemu-img usr/bin/kvm-img
+usr/bin/qemu-nbd usr/bin/kvm-nbd
+usr/bin/qemu-system-x86_64 usr/bin/kvm
+usr/share/qemu usr/share/qemu-kvm
+usr/share/qemu usr/share/kvm
+usr/share/doc/qemu usr/share/doc/kvm
+usr/share/man/man1/qemu-user.1 usr/share/man/man1/qemu-i386.1
+usr/share/man/man1/qemu-user.1 usr/share/man/man1/qemu-x86_64.1
+usr/share/man/man1/qemu.1 usr/share/man/man1/qemu-system-i386.1
+usr/share/man/man1/qemu.1 usr/share/man/man1/qemu-system-x86_64.1
+usr/share/man/man1/qemu.1 usr/share/man/man1/kvm.1
+usr/share/man/man1/qemu-img.1 usr/share/man/man1/kvm-img.1
+usr/share/man/man8/qemu-nbd.8 usr/share/man/man8/kvm-nbd.8

@@ -29,6 +29,10 @@ void MessageReader::seek(unsigned int pos) {
 	seek_pos = pos;
 }
 
+unsigned int MessageReader::tell() {
+	return seek_pos;
+}
+
 void MessageReader::assureSize(unsigned int size_to_read) {
 	if (seek_pos + size_to_read > getSize())
 		throw ReaderException("Not enough data to read.");

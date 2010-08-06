@@ -1,0 +1,120 @@
+Source: qemu-kvm
+Section: misc
+Priority: optional
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Build-Depends: debhelper (>= 7), pkg-config, quilt (>= 0.40),
+ bzip2, uuid-dev, zlib1g-dev, libsdl1.2-dev, libasound2-dev, libcurl4-gnutls-dev, libgnutls-dev,
+ libncurses5-dev, libpci-dev, libpulse-dev, libaio-dev, nasm, texi2html, bcc, iasl,
+ device-tree-compiler [powerpc], sysv-rc (>= 2.86.ds1-14.1ubuntu2), libx11-dev
+Standards-Version: 3.8.3
+Homepage: http://www.linux-kvm.org
+
+Package: qemu-kvm
+Architecture: i386 amd64 powerpc s390 lpia
+Depends: ${shlibs:Depends},
+ ${misc:Depends},
+ adduser,
+ bridge-utils,
+ iproute,
+ python,
+ qemu-common (>= ${source:Version})
+Provides: kvm, qemu
+Conflicts: qemu (<< 0.11.0-0ubuntu5), kvm (<< 1:84+dfsg-0ubuntu16+0.11.0), kvm-data
+Replaces: qemu, kvm (<< 1:84+dfsg-0ubuntu16+0.11.0), kvm-data
+Breaks: udev (<< 136-1)
+Description: Full virtualization on i386 and amd64 hardware
+ Using KVM, one can run multiple virtual PCs, each running unmodified Linux or
+ Windows images. Each virtual machine has private virtualized hardware: a
+ network card, disk, graphics adapter, etc.
+ .
+ KVM (for Kernel-based Virtual Machine) is a full virtualization solution for
+ Linux hosts on x86 (32 and 64-bit) hardware.
+ .
+ KVM is intended for systems where the processor has hardware support for
+ virtualization, see below for details.  All combinations of 32-bit and 64-bit
+ host and guest systems are supported, except 64-bit guests on 32-bit hosts.
+ .
+ KVM requires your system to support hardware virtualization, provided by AMD's
+ SVM capability or Intel's VT. To find out if your processor has the necessary
+ support:
+ .
+   egrep "flags.*:.*(svm|vmx)" /proc/cpuinfo
+ .
+ If it prints anything, the processor provides hardware virtualization
+ support and is suitable for use with KVM.  Without hardware support, you can
+ use qemu emulation instead.
+ .
+ KVM consists of two loadable kernel modules (kvm.ko and either kvm-amd.ko or
+ kvm-intel.ko) and a userspace component. This package contains the userspace
+ component, and you can get the kernel modules from the standard kernel images.
+ .
+ This package contains support for the x86 and x86-64 architectures only.
+ Support for other architectures is provided by the qemu-kvm-extras package.
+
+Package: qemu-common
+Architecture: all
+Depends: ${shlibs:Depends}, ${misc:Depends}, seabios, vgabios
+Recommends: cpu-checker
+Suggests: mol-drivers-macosx, openbios-sparc, kvm-pxe, ubuntu-vm-builder, uml-utilities
+Replaces: qemu-kvm (<< 0.12.3+noroms-0ubuntu1)
+Description: qemu common functionality (bios, documentation, etc)
+ This package pulls in the various binary bios rom blobs needed to boot
+ the various emulated architectures, as well as the documentation.
+
+Package: qemu-kvm-extras
+Architecture: i386 amd64 powerpc s390 lpia armel
+Depends: ${shlibs:Depends}, ${misc:Depends}, qemu-kvm
+Description: fast processor emulator binaries for non-x86 architectures
+ QEMU is a fast processor emulator: currently the package supports
+ ARM, CRIS, i386, M68k (ColdFire), MIPS, PowerPC, SH4, SPARc and x86-64
+ emulation. By using dynamic translation it achieves reasonable speed
+ while being easy to port on new host CPUs. QEMU has two operating modes:
+ .
+  * User mode emulation: QEMU can launch Linux processes compiled for
+    one CPU on another CPU.
+  * Full system emulation: QEMU emulates a full system, including a
+    processor and various peripherals. It enables easier testing and
+    debugging of system code. It can also be used to provide virtual
+    hosting of several virtual PC on a single server.
+ .
+ QEMU requires no host kernel patches or CPU extensions to run.
+
+Package: qemu-kvm-extras-static
+Architecture: amd64 i386 lpia
+Depends: ${misc:Depends}, binfmt-support (>= 1.2.17)
+Replaces: qemu-arm-static (<< 0.12.2-0ubuntu2~)
+Provides: qemu-arm-static
+Conflicts: qemu-arm-static (<< 0.12.2-0ubuntu2~)
+Description: static QEMU user mode emulation binaries
+ This package provides a static version of the QEMU ARM user mode
+ emulation.  This is particularly useful in combination with
+ binfmt-support: it permits running ARM binaries in an ARM chroot.
+ .
+ If you want full system emulation or if you don't need binfmt
+ support, you probably want the qemu-kvm-extras package instead.
+
+Package: qemu-arm-static
+Architecture: amd64 i386 lpia
+Depends: ${misc:Depends}, qemu-kvm-extras-static
+Description: dummy transitional package for qemu-kvm-extras-static
+ This transitional package helps users transition to the
+ qemu-kvm-extras-static package.  Once this package and its dependencies
+ are installed you can safely remove it.
+
+Package: kvm
+Architecture: amd64 armel i386 powerpc sparc
+Depends: ${misc:Depends}, qemu-kvm
+Section: metapackages
+Description: dummy transitional pacakge from kvm to qemu-kvm
+ This transitional package helps users transition from the kvm package to the
+ kvm-qemu package.  Once this package and its dependencies are installed you
+ can safely remove it.
+
+Package: qemu
+Architecture: amd64 armel i386 powerpc sparc
+Depends: ${misc:Depends}, qemu-kvm
+Section: metapackages
+Description: dummy transitional pacakge from qemu to qemu-kvm
+ This transitional package helps users transition from the qemu package to the
+ kvm-qemu package.  Once this package and its dependencies are installed you
+ can safely remove it.

@@ -28,8 +28,11 @@ public:
 	}
 	void dec() {
 		if (--refcount == 0) {
-			delete [] content;
+			delete this;
 		}
+	}
+	~Refbuf() {
+		delete [] content;
 	}
 };
 

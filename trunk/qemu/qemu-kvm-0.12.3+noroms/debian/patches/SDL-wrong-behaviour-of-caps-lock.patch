@@ -1,0 +1,31 @@
+From bb212d2b23bee1abe52db53231caccc1a6a27791 Mon Sep 17 00:00:00 2001
+From: Shahar Havivi <shaharh@redhat.com>
+Date: Fri, 12 Feb 2010 00:00:44 +0200
+Subject: [PATCH] Qemu does not pass pressed capslock to client
+
+---
+ sdl.c |    8 +++++---
+ 1 files changed, 5 insertions(+), 3 deletions(-)
+
+diff --git a/sdl.c b/sdl.c
+index cf27ad2..9074641 100644
+--- a/sdl.c
++++ b/sdl.c
+@@ -390,9 +390,11 @@ static void sdl_process_key(SDL_KeyboardEvent *ev)
+         break;
+     case 0x45: /* num lock */
+     case 0x3a: /* caps lock */
+-        /* SDL does not send the key up event, so we generate it */
+-        kbd_put_keycode(keycode);
+-        kbd_put_keycode(keycode | 0x80);
++        if (ev->type == SDL_KEYUP) {
++            kbd_put_keycode(keycode | 0x80);
++        } else {
++            kbd_put_keycode(keycode);
++        }
+         return;
+     }
+ 
+-- 
+1.6.3.3
+
