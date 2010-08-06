@@ -1,0 +1,60 @@
+[PATCH] better describe -net options
+
+The manpage reflects that multiple -net user calls may be made,
+but if this is done, it can cause the program to hang. Instead,
+multiple -net calls can be combined into one, and this patch adds
+that information to qemu-options.hx. Also, -net user may only
+be used in conjunction with -net nic.  This is already implcitly
+stated, but this patch makes that statement more explicit.
+
+https://bugs.launchpad.net/ubuntu/+source/qemu-kvm/+bug/474969
+https://bugs.launchpad.net/ubuntu/+source/qemu-kvm/+bug/453617
+
+Signed-off-by: Brian Thomason <brian.thomason@canonical.com>
+---
+ qemu-options.hx |   15 +++++++++++++--
+ 1 files changed, 13 insertions(+), 2 deletions(-)
+
+diff --git a/qemu-options.hx b/qemu-options.hx
+index fd50add..724f434 100644
+--- a/qemu-options.hx
++++ b/qemu-options.hx
+@@ -952,7 +952,8 @@ for a list of available devices for your target.
+ 
+ @item -net user[,@var{option}][,@var{option}][,...]
+ Use the user mode network stack which requires no administrator
+-privilege to run. Valid options are:
++privilege to run. Please note that this can be used only in conjunction with
++@option{-net nic}. Valid options are:
+ 
+ @table @option
+ @item vlan=@var{n}
+@@ -1028,7 +1029,8 @@ the guest IP address @var{guestaddr} on guest port @var{guestport}. If
+ @var{guestaddr} is not specified, its value is x.x.x.15 (default first address
+ given by the built-in DHCP server). By specifying @var{hostaddr}, the rule can
+ be bound to a specific host interface. If no connection type is set, TCP is
+-used. This option can be given multiple times.
++used. This option can not be given multiple times, but multiple rules may
++be combined.
+ 
+ For example, to redirect host X11 connection from screen 1 to guest
+ screen 0, use the following:
+@@ -1052,6 +1054,15 @@ telnet localhost 5555
+ Then when you use on the host @code{telnet localhost 5555}, you
+ connect to the guest telnet server.
+ 
++To combine two or more hostfwd rules, simply use a comma as a delimiter. For
++example, to combine the two rules mentioned in the examples above, use the
++following:
++
++@example
++#on the host
++qemu -net user,hostfwd=tcp:127.0.0.1:6001-:6000,hostfwd=tcp:5555-::23 [...]
++@end example
++
+ @item guestfwd=[tcp]:@var{server}:@var{port}-@var{dev}
+ Forward guest TCP connections to the IP address @var{server} on port @var{port}
+ to the character device @var{dev}. This option can be given multiple times.
+-- 
+1.6.3.3
+

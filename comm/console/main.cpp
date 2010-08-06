@@ -19,16 +19,16 @@ void service(Connection* conn) {
 	try {
 		while (true) {
 			Message msg = msg_conn.readMessage();
-			cout << "Received message, header = 0x" << hex << msg.getHeader()
-					<< ", length = " << msg.getLength();
-			if (msg.getLength() > 0) {
-				cout << ", content:" << endl;
-				for (const char* ptr = msg.getContentPtr(); ptr
-						< msg.getContentPtr() + msg.getLength(); ++ptr) {
-					cout << " " << "0x" << hex << (int) (*ptr);
-				}
-			}
-			cout << endl;
+//			cout << "Received message, header = 0x" << hex << msg.getHeader()
+//					<< ", length = " << msg.getLength();
+//			if (msg.getLength() > 0) {
+//				cout << ", content:" << endl;
+//				for (const char* ptr = msg.getContentPtr(); ptr
+//						< msg.getContentPtr() + msg.getLength(); ++ptr) {
+//					cout << " " << "0x" << hex << (int) (*ptr);
+//				}
+//			}
+//			cout << endl;
 		}
 	} catch (exception& e) {
 		cerr << e.what() << endl;

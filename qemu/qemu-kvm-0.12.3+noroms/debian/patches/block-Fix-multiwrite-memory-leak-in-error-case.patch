@@ -1,0 +1,31 @@
+commit 7eb58a6c556c3880e6712cbf6d24d681261c5095
+Author: Kevin Wolf <kwolf@redhat.com>
+Date:   Tue Apr 6 18:24:07 2010 +0200
+
+    block: Fix multiwrite memory leak in error case
+    
+    Previously multiwrite_user_cb was never called if a request in the multiwrite
+    batch failed right away because it did set mcb->error immediately. Make it look
+    more like a normal callback to fix this.
+
+    Reported-by: Juan Quintela <quintela@redhat.com>
+    Signed-off-by: Kevin Wolf <kwolf@redhat.com>
+    Signed-off-by: Aurelien Jarno <aurelien@aurel32.net>
+
+Origin: upstream, http://git.kernel.org/?p=virt/kvm/qemu-kvm.git;a=commit;h=7eb58a6c556c3880e6712cbf6d24d681261c5095
+Bug-ubuntu: https://bugs.launchpad.net/ubuntu/+source/qemu-kvm/+bug/588293
+
+Index: qemu-kvm-0.12.3+noroms/block.c
+===================================================================
+--- qemu-kvm-0.12.3+noroms.orig/block.c	2010-06-15 08:27:50.000000000 -0500
++++ qemu-kvm-0.12.3+noroms/block.c	2010-06-15 08:29:10.244281888 -0500
+@@ -1761,7 +1761,8 @@
+                 reqs[i].error = EIO;
+                 goto fail;
+             } else {
+-                mcb->error = EIO;
++                mcb->num_requests++;
++                multiwrite_cb(mcb, -EIO);
+                 break;
+             }
+         } else {

@@ -1,0 +1,11 @@
+--- a/vl.c	2010-02-25 18:34:00.000000000 -0800
++++ b/vl.c	2010-03-22 09:58:36.974869227 -0700
+@@ -173,7 +173,7 @@ int main(int argc, char **argv)
+ //#define DEBUG_NET
+ //#define DEBUG_SLIRP
+ 
+-#define DEFAULT_RAM_SIZE 128
++#define DEFAULT_RAM_SIZE 384
+ 
+ static const char *data_dir;
+ const char *bios_name = NULL;

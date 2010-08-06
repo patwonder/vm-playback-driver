@@ -13,6 +13,7 @@
 #include <winsock2.h>
 #include <stdexcept>
 #include "IConnection.h"
+#include "Common.h"
 
 namespace va {
 
@@ -42,7 +43,7 @@ private:
 	};
 	static StaticDestroyer destroyer;
 public:
-	static Connection* newConnection();
+	static Connection* newConnection(int port = va::PORT);
 	virtual void send(const char* content, unsigned int size);
 	virtual void receive(char* content, unsigned int size);
 	void close();

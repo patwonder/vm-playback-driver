@@ -31,7 +31,7 @@ void Connection::setSocketOptions(int socket) {
 }
 
 // Start listening on port PORT
-void Connection::listen() {
+void Connection::listen(int port) {
 	if (listening)
 		closeListener();
 	if ((sock_fd = socket(AF_INET, SOCK_STREAM, 0)) == -1) {
@@ -39,16 +39,16 @@ void Connection::listen() {
 	}
 	bzero(&sock_addr, sizeof(sock_addr));
 	sock_addr.sin_family = AF_INET;
-	sock_addr.sin_port = htons(PORT);
+	sock_addr.sin_port = htons(port);
 	sock_addr.sin_addr.s_addr = INADDR_ANY;//inet_addr("127.0.0.1"); // Only accept connections from localhost
 	if (bind(sock_fd, (struct sockaddr*)&sock_addr, sizeof(sock_addr)) == -1) {
 		stringstream ss;
-		ss << "Unable to bind on port " << PORT;
+		ss << "Unable to bind on port " << port;
 		throw ConnectionException(ss.str());
 	}
 	if (::listen(sock_fd, BACKLOG) == -1) {
 		stringstream ss;
-		ss << "Unable to listen on port " << PORT;
+		ss << "Unable to listen on port " << port;
 		throw ConnectionException(ss.str());
 	}
 	setSocketOptions(sock_fd);

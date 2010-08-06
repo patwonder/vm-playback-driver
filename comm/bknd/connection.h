@@ -25,8 +25,11 @@
 
 namespace va {
 
+class TcpListener;
+
 class Connection : public IConnection {
 private:
+	friend class TcpListener;
 	int client_fd;
 	struct sockaddr_in client_addr;
 	bool open;
@@ -40,7 +43,6 @@ private:
 	void receiveDirect(char* content, unsigned int size);
 
 	static void setSocketOptions(int socket);
-	static void listen();
 	static void closeListener();
 	static const int BACKLOG = 10;
 	static const unsigned int SEND_THRESHOLD = 2048;
@@ -58,6 +60,7 @@ private:
 	};
 	static StaticDestroyer destroyer;
 public:
+	static void listen(int port = va::PORT);
 	static Connection* acceptConnection();
 	virtual ~Connection();
 

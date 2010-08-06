@@ -1,0 +1,90 @@
+From bc4347b883e8175dadef77ed9e02ccaa5e8eba94 Mon Sep 17 00:00:00 2001
+From: Stefan Weil <weil@mail.berlios.de>
+Date: Wed, 20 Jan 2010 19:43:25 +0100
+Subject: [PATCH] arm host: fix compiler warning
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Compilation for arm (native or cross) results in this
+warning:
+
+fpu/softfloat-native.c: In function ‘float64_round_to_int’:
+fpu/softfloat-native.c:387: error: control reaches end of non-void function
+
+float64_round_to_int uses special assembler code for arm
+and has no explicit return value.
+
+As there is no obvious reason why arm should need special
+code, all fpu related conditionals were removed.
+The remaining code is standard (C99) and compiles for arm,
+too.
+
+Signed-off-by: Stefan Weil <weil@mail.berlios.de>
+Acked-by: Laurent Desnogues <laurent.desnogues@gmail.com>
+Signed-off-by: Aurelien Jarno <aurelien@aurel32.net>
+---
+ fpu/softfloat-native.c |   20 --------------------
+ fpu/softfloat-native.h |    7 -------
+ 2 files changed, 0 insertions(+), 27 deletions(-)
+
+diff --git a/fpu/softfloat-native.c b/fpu/softfloat-native.c
+index 8d64f4e..049c830 100644
+--- a/fpu/softfloat-native.c
++++ b/fpu/softfloat-native.c
+@@ -12,8 +12,6 @@ void set_float_rounding_mode(int val STATUS_PARAM)
+ #if (defined(CONFIG_BSD) && !defined(__APPLE__) && !defined(__GLIBC__)) || \
+     (defined(CONFIG_SOLARIS) && CONFIG_SOLARIS_VERSION < 10)
+     fpsetround(val);
+-#elif defined(__arm__)
+-    /* nothing to do */
+ #else
+     fesetround(val);
+ #endif
+@@ -365,25 +363,7 @@ float64 float64_trunc_to_int( float64 a STATUS_PARAM )
+ 
+ float64 float64_round_to_int( float64 a STATUS_PARAM )
+ {
+-#if defined(__arm__)
+-    switch(STATUS(float_rounding_mode)) {
+-    default:
+-    case float_round_nearest_even:
+-        asm("rndd %0, %1" : "=f" (a) : "f"(a));
+-        break;
+-    case float_round_down:
+-        asm("rnddm %0, %1" : "=f" (a) : "f"(a));
+-        break;
+-    case float_round_up:
+-        asm("rnddp %0, %1" : "=f" (a) : "f"(a));
+-        break;
+-    case float_round_to_zero:
+-        asm("rnddz %0, %1" : "=f" (a) : "f"(a));
+-        break;
+-    }
+-#else
+     return rint(a);
+-#endif
+ }
+ 
+ float64 float64_rem( float64 a, float64 b STATUS_PARAM)
+diff --git a/fpu/softfloat-native.h b/fpu/softfloat-native.h
+index fe737b3..6da0bcb 100644
+--- a/fpu/softfloat-native.h
++++ b/fpu/softfloat-native.h
+@@ -126,13 +126,6 @@ enum {
+     float_round_up           = FP_RP,
+     float_round_to_zero      = FP_RZ
+ };
+-#elif defined(__arm__)
+-enum {
+-    float_round_nearest_even = 0,
+-    float_round_down         = 1,
+-    float_round_up           = 2,
+-    float_round_to_zero      = 3
+-};
+ #else
+ enum {
+     float_round_nearest_even = FE_TONEAREST,
+-- 
+1.7.0
+

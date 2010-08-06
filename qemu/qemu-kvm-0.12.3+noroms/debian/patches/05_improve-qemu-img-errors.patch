@@ -1,0 +1,20 @@
+qemu-img: improve error reporting
+
+Use strerror to provide a better error message when qemu-img fails.
+
+https://bugs.edge.launchpad.net/ubuntu/+source/qemu-kvm/+bug/418112
+
+Signed-off-by: Dustin Kirkland <kirkland@canonical.com>
+
+diff -uprN qemu-kvm-0.11.0~rc2/qemu-img.c qemu-kvm-0.11.0~rc2.new/qemu-img.c
+--- qemu-kvm-0.11.0~rc2/qemu-img.c	2009-08-30 04:10:59.000000000 -0500
++++ qemu-kvm-0.11.0~rc2.new/qemu-img.c	2009-09-10 22:30:32.572211443 -0500
+@@ -368,7 +368,7 @@ static int img_create(int argc, char **a
+         } else if (ret == -EFBIG) {
+             error("The image size is too large for file format '%s'", fmt);
+         } else {
+-            error("Error while formatting");
++            error("Error while formatting (%s)", strerror(-ret));
+         }
+     }
+     return 0;
