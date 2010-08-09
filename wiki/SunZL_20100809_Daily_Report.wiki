@@ -1,0 +1,6 @@
+#labels Daily_Report
+=Summary=
+*Continued testing performance.
+
+=Missions of tomorrow=
+*Introduce our work to mentors.
