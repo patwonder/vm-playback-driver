@@ -1,0 +1,10 @@
+#labels Daily_Report
+= Brief =
+
+Have a meeting with Kevin and Lianhao.<br>
+Draft paper.
+
+= Details =
+
+ * In meeting, we discussed our testing results. Kevin mentioned some data were not equalized. So we decided to make a more accurate test.
+ * I start to draft a report for these weeks' work.
