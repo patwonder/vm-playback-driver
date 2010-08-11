@@ -1,0 +1,9 @@
+#labels Daily_Report
+= Brief=
+
+Writing paper
+
+
+= Details =
+
+ * 50%
