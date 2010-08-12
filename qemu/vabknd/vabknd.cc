@@ -12,6 +12,7 @@
 typedef int64_t UINT64_C;
 extern "C"{
 #include <libavcodec/avcodec.h>
+#include <libavformat/avformat.h>
 #include <libswscale/swscale.h>
 }
 #include <iostream>
@@ -25,6 +26,7 @@ using namespace va;
 using namespace std;
 
 VAContext* vactx;
+AVCodecContext* h264context;
 SDL_Thread *chh_tid;
 SDL_Thread *decode_tid;
 #define CH_PORT 8198
@@ -67,6 +69,29 @@ int changeHandler_thread(void *v)
 
 }
 
+void h264init() {
+    AVFormatContext *pFormatCtx;
+    if (av_open_input_file(&pFormatCtx, "/home/pat/avatar.mkv", NULL, 0, NULL)!=0){
+	printf("Can't open %s\n","/home/pat/avatar.mkv");
+	exit(1);
+    }
+    if (av_find_stream_info(pFormatCtx)<0){
+	printf("Can't find stream info\n");
+	exit(1);
+    }
+    dump_format(pFormatCtx,0,"/home/pat/avatar.mkv",false);
+    int pCount,videoStream=-1;
+    for (pCount = 0; pCount<pFormatCtx->nb_streams;pCount++){
+	if (pFormatCtx->streams[pCount]->codec->codec_type==CODEC_TYPE_VIDEO){
+	    videoStream = pCount;
+	}
+    }
+    if (videoStream == -1){
+	exit(1);
+    }
+    h264context = pFormatCtx->streams[videoStream]->codec;
+}
+
 void codec_init(int i)
 {
  	CodecID cid;
@@ -91,17 +116,22 @@ void codec_init(int i)
 		av_free(vactx->avctx);
 		vactx->avctx = NULL;
     	}
-    	
-	vactx->avctx = avcodec_alloc_context();
+    	if (cid == CODEC_ID_H264) {
+            h264init();
+            vactx->avctx = h264context;
+        } else {
+	    vactx->avctx = avcodec_alloc_context();
+        }
     	if (avcodec_open(vactx->avctx, codec) < 0) {
-        	fprintf(stderr, "could not open codec\n");
-        	throw cid;
-    	}
+            fprintf(stderr, "could not open codec\n");
+            throw cid;
+        }
     	 	
 }
 
 int decode_thread(void *v)
 {
+    av_register_all();
     avcodec_init();
     avcodec_register_all();
     /*if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER|SDL_INIT_EVENTTHREAD)){
@@ -116,7 +146,7 @@ int decode_thread(void *v)
 	while(1){
     		Message m = conn.readMessage();
     		int header  = m.getHeader();
-    		printf("header: %d\nsize:%d\n",header,m.getLength());
+    		//printf("header: %d\nsize:%d\n",header,m.getLength());
     		if(header==1){
 			int cid;
 			memcpy(&cid,m.getContentPtr(),sizeof(int));
@@ -126,18 +156,16 @@ int decode_thread(void *v)
 			SDL_UnlockMutex(vactx->mutex);
 			continue;
 		}
-                //continue;
 		if(header!=4){
 			continue;
 		}
+                //continue;
    	 	AVPacket avpkt;
    	 	av_init_packet(&avpkt);
     		avpkt.data = (uint8_t*)(const_cast<char*>(m.getContentPtr()+4));
-    		avpkt.size = m.getLength()-sizeof(int);
+    		avpkt.size = *(int*)(m.getContentPtr());
 		SDL_LockMutex(vactx->mutex);
-                //printf("Here 1\n");
     		len = avcodec_decode_video2(vactx->avctx,vactx->frame,&got,&avpkt);   
-                //printf("Here 2\n");
     		if(len<0){
 			fprintf(stderr,"Error while decoding frame %d\n",i);
 			SDL_UnlockMutex(vactx->mutex);
@@ -151,7 +179,6 @@ int decode_thread(void *v)
 		}
 		SDL_UnlockMutex(vactx->mutex);
 		av_free_packet(&avpkt);
-                //printf("Here 3\n");
 	}
     }catch(std::exception& e) {
         	std::cerr << e.what() << std::endl;

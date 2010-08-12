@@ -85,7 +85,7 @@ static void va_do_drawing_locked(VAContext* context, SDL_Surface* real_screen, i
     if (context->playing) {
         /* Check if there's anything to draw */
         if (!context->needDraw) {
-            printf("%s\n", "Nothing to draw..");
+            //printf("%s\n", "Nothing to draw..");
             SDL_UnlockMutex(context->mutex);
             return;
         }
@@ -130,7 +130,7 @@ static void va_do_drawing_locked(VAContext* context, SDL_Surface* real_screen, i
             rect.h = vh;
             SDL_DisplayYUVOverlay(state.overlay, &rect);
             //printf("Here5\n");
-            printf("Frame %d drawn.\n", ++state.frame);
+            //printf("Frame %d drawn.\n", ++state.frame);
         } else {
             printf("%s\n", "va_do_drawing_locked: image scaling failure!");
         }
