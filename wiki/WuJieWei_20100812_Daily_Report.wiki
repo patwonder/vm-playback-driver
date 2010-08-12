@@ -1,0 +1,4 @@
+#labels Daily_Report
+= Brief =
+
+Writing Report
